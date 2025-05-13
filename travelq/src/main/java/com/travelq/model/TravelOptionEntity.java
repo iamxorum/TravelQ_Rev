@@ -1,0 +1,39 @@
+package com.travelq.model;
+
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@Entity
+@Table(name = "travel_options")
+public class TravelOptionEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "option_id")
+    private Long id;
+
+    @Column(name = "check_in", nullable = false)
+    private boolean checkIn;
+
+    @Column(name = "seat_selection", nullable = false)
+    private String seatSelection;
+
+    @Column(name = "extra_baggage")
+    private String extraBaggage;
+
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "ticket_id", nullable = false, unique = true)
+    private TicketEntity ticket;
+
+    public TravelOptionEntity(boolean checkIn, String seatSelection, String extraBaggage, TicketEntity ticket) {
+        this.checkIn = checkIn;
+        this.seatSelection = seatSelection;
+        this.extraBaggage = extraBaggage;
+        this.ticket = ticket;
+    }
+}
