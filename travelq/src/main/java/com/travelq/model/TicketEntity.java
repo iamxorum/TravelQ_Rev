@@ -1,6 +1,7 @@
 package com.travelq.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "tickets")
 public class TicketEntity {
@@ -32,12 +34,4 @@ public class TicketEntity {
 
     @OneToOne(mappedBy = "ticket", cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = false)
     private TravelOptionEntity travelOption;
-
-    public TicketEntity(LocalDateTime purchaseDate, UserEntity user, FlightEntity flight,
-                        TravelOptionEntity travelOption) {
-        this.purchaseDate = purchaseDate;
-        this.user = user;
-        this.flight = flight;
-        this.travelOption = travelOption;
-    }
 }

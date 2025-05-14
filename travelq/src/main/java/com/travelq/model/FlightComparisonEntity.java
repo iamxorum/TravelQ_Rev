@@ -1,6 +1,7 @@
 package com.travelq.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,6 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "flight_comparisons")
 public class FlightComparisonEntity {
@@ -26,8 +28,4 @@ public class FlightComparisonEntity {
             inverseJoinColumns = @JoinColumn(name = "flight_id")
     )
     private List<FlightEntity> flights;
-
-    public FlightComparisonEntity(List<FlightEntity> flights) {
-        this.flights = flights;
-    }
 }

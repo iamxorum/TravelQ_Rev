@@ -1,6 +1,7 @@
 package com.travelq.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,6 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "users")
 public class UserEntity {
@@ -41,15 +43,4 @@ public class UserEntity {
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<NotificationEntity> notifications;
-
-    public UserEntity(String username, String password, String email, List<TicketEntity> tickets,
-                      TravelHistoryEntity travelHistory, List<NotificationEntity> notifications) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.tickets = tickets;
-        this.travelHistory = travelHistory;
-        this.notifications = notifications;
-    }
-
 }

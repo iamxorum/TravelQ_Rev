@@ -1,6 +1,7 @@
 package com.travelq.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,6 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "travel_history")
 public class TravelHistoryEntity {
@@ -26,10 +28,4 @@ public class TravelHistoryEntity {
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false, unique = true)
     private UserEntity user;
-
-    public TravelHistoryEntity(int flightsCount, double totalSpent, UserEntity user) {
-        this.flightsCount = flightsCount;
-        this.totalSpent = totalSpent;
-        this.user = user;
-    }
 }

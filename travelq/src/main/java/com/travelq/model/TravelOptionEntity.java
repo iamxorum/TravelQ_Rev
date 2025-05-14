@@ -1,6 +1,7 @@
 package com.travelq.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,6 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "travel_options")
 public class TravelOptionEntity {
@@ -21,19 +23,12 @@ public class TravelOptionEntity {
     private boolean checkIn;
 
     @Column(name = "seat_selection", nullable = false)
-    private String seatSelection;
+    private TravelOptionSeatSelectionEnum seatSelection;
 
     @Column(name = "extra_baggage")
-    private String extraBaggage;
+    private TravelOptionExtraBaggageEnum extraBaggage;
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ticket_id", nullable = false, unique = true)
     private TicketEntity ticket;
-
-    public TravelOptionEntity(boolean checkIn, String seatSelection, String extraBaggage, TicketEntity ticket) {
-        this.checkIn = checkIn;
-        this.seatSelection = seatSelection;
-        this.extraBaggage = extraBaggage;
-        this.ticket = ticket;
-    }
 }

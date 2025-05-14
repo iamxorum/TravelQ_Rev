@@ -1,5 +1,6 @@
 package com.travelq.model;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,6 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "flights")
 public class FlightEntity {
@@ -42,18 +44,4 @@ public class FlightEntity {
 
     @ManyToMany(mappedBy = "flights", fetch = FetchType.LAZY)
     private List<FlightComparisonEntity> comparisons;
-
-    public FlightEntity(String origin, String destination, LocalDateTime departureTime,
-                        LocalDateTime arrivalTime, double price, int stopovers, List<TicketEntity> tickets,
-                        List<FlightComparisonEntity> comparisons) {
-        this.origin = origin;
-        this.destination = destination;
-        this.departureTime = departureTime;
-        this.arrivalTime = arrivalTime;
-        this.price = price;
-        this.stopovers = stopovers;
-        this.tickets = tickets;
-        this.comparisons = comparisons;
-    }
-
 }
