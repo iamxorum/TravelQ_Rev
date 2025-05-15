@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -22,4 +23,16 @@ public class FlightDto {
     private int stopovers;
     private List<TicketDto> tickets;
     private List<FlightComparisonDto> comparisons;
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        FlightDto flightDto = (FlightDto) o;
+        return Double.compare(price, flightDto.price) == 0 && stopovers == flightDto.stopovers && Objects.equals(id, flightDto.id) && Objects.equals(origin, flightDto.origin) && Objects.equals(destination, flightDto.destination) && Objects.equals(departureTime, flightDto.departureTime) && Objects.equals(arrivalTime, flightDto.arrivalTime) && Objects.equals(tickets, flightDto.tickets) && Objects.equals(comparisons, flightDto.comparisons);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, origin, destination, departureTime, arrivalTime, price, stopovers, tickets, comparisons);
+    }
 }
